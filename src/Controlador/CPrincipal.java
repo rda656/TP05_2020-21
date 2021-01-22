@@ -122,7 +122,16 @@ public class CPrincipal {
      * @return devuelve true si hay algún libro almacenado en el array y false en caso contrario.
      */
     private static boolean mostrarTodosLosLibros(){
+        if(libros[0] == null)
+            return false;
         
+        for(int i = 0; i < libros.length; i++){
+            if(libros[i] != null)
+                System.out.println(libros[i].toString());
+            else
+                break;
+        }
+        return true;        
     }
     
     /**
@@ -130,7 +139,15 @@ public class CPrincipal {
      * @return devuelve true si hay algún libro almacenado en el array y false en caso contrario.
      */
     private static boolean mostrarLibro(){
+        int numeroLibros = mostarMenuNombreLibros();
+        if(numeroLibros == 0)
+            return false;
         
+        int opcion = ES.leerEntero(1, numeroLibros, "0. Salir.\n Elija una opción: ");
+        
+        System.out.println(libros[opcion-1].toString());
+        
+        return true;
     }
     
     /**
@@ -138,7 +155,13 @@ public class CPrincipal {
      * @return Devuelve el número de registros que ha sido capaz de mostrar.
      */
     private static int mostarMenuNombreLibros(){
-        
+        for(int i = 0; i < libros.length; i++){
+            if(libros[i] != null)
+                System.out.println((i+1) + ". " + libros[i].getNombre());
+            else
+                return i;
+        }
+        return libros.length;
     }
     
     /**
@@ -146,7 +169,21 @@ public class CPrincipal {
      * @return devuelve false si el array no tiene más capacidad para almacenar libros.
      */
     private static boolean aniadirLibro(){
-        
+        for(int i = 0; i < libros.length; i++){
+            if(libros[i] == null){
+                String codigo;
+                do{
+                    codigo = ES.leerCadena("Introduzca el código del libro (recuerde que debe de estar formado por 3 letras seguidas de 2 números): ");
+                    codigo = codigo.toUpperCase();
+                    if(!Utilidades.ValidarDatos.comprobarCodigoLibro(codigo))
+                        System.err.println("Error. El código introducido no es válido");
+                }while(!Utilidades.ValidarDatos.comprobarCodigoLibro(codigo));
+                
+                libros[i] = new Libro(codigo, ES.leerCadena("Introduzca el nombre del libro: "), ES.leerEntero("Introduzca el número de ejemplares que hay del libro: "));
+                return true;       
+            }
+        }
+        return false;
     }
     
     /**
@@ -154,7 +191,20 @@ public class CPrincipal {
      * @return devuelve true si se ha podido realizar el borrado y false si no hay registros almacenados.
      */
     private static boolean eliminarLibro(){
+        int numeroLibros = mostarMenuNombreLibros();
+        if(numeroLibros == 0)
+            return false;
         
+        int opcion = ES.leerEntero(0, numeroLibros, "0. Salir.\n Elija una opción: ");
+        
+        for(; opcion < libros.length; opcion++){            
+            libros[opcion-1] = libros[opcion];
+            
+            if (libros[opcion] == null)
+                return true;
+        }
+        libros[libros.length-1] = null;
+        return true;
     }
     
     /**
@@ -162,7 +212,14 @@ public class CPrincipal {
      * @return devuelve true si se ha podido realizar la devolución y false si no hay registros almacenados.
      */
     private static boolean devolverLibro(){
+        int numeroLibros = mostarMenuNombreLibros();
+        if(numeroLibros == 0)
+            return false;
         
+        int opcion = ES.leerEntero(0, numeroLibros, "0. Salir.\n Elija una opción: ");
+        
+        libros[opcion-1].devolverEjemplar();        
+        return true;
     }
     
     /**
@@ -170,7 +227,14 @@ public class CPrincipal {
      * @return devuelve true si se ha podido realizar el préstamo y false si no hay registros almacenados.
      */
     private static boolean prestarLibro(){
+        int numeroLibros = mostarMenuNombreLibros();
+        if(numeroLibros == 0)
+            return false;
         
+        int opcion = ES.leerEntero(0, numeroLibros, "0. Salir.\n Elija una opción: ");
+        
+        libros[opcion-1].prestarEjemplar();        
+        return true;
     }
     
     /**
@@ -178,6 +242,31 @@ public class CPrincipal {
      * @return devuelve true si se ha podido realizar la devolución y false si no hay registros almacenados.
      */
     private static boolean modificarLibro(){
+        int parametroModificar, numeroLibros = mostarMenuNombreLibros();
+        if(numeroLibros == 0)
+            return false;
         
+        int opcion = ES.leerEntero(0, numeroLibros, "0. Salir.\n Elija una opción: ");
+        
+        do{
+            parametroModificar = ES.leerEntero(opcion, opcion, "¿Qué parámetro quiere modificar?\n"
+                    + "1. Nombre.\n"
+                    + "2. Unidades.\n"
+                    + "0. Salir.\n"
+                    + "Elija una opción: ");
+            switch(parametroModificar){
+                case 0:
+                    System.out.println("Volviendo al menú de libros...");
+                    break;
+                case 1:
+                    libros[opcion - 1].setNombre(ES.leerCadena("Introduzca el nuevo nombre: "));
+                    break;
+                case 2:
+                    libros[opcion - 1].setUnidades(ES.leerEntero("Introduzca el número de unidades que hay del libro: "));
+                    break;
+            }
+        }while(parametroModificar != 0);
+        
+        return true;
     }
 }

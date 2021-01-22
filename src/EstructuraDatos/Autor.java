@@ -14,7 +14,7 @@ public class Autor {
      * @param nombre cadena de caracteres con el nombre. Debe ser mayor a 0.
      * @param apellidos cadena de caracteres con los apellidos. Debe ser mayor a 0.
      */
-    void Autor (String nombre, String apellidos)
+    public Autor (String nombre, String apellidos)
     {
         if(nombre.length() > 0)
             this.nombre = nombre;

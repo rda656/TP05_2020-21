@@ -3,23 +3,14 @@
   realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="EstructuraDatos.Libro" project="TP05" file="/TP05/src/EstructuraDatos/Libro.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="179" y="130"/>    
+    <position height="-1" width="-1" x="157" y="130"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="EstructuraDatos.Autor" project="TP05" file="/TP05/src/EstructuraDatos/Autor.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="179" y="462"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="Utilidades.ES" project="TP05" file="/TP05/src/Utilidades/ES.java" binary="false" 
+  <class id="2" language="java" name="Utilidades.ES" project="TP05" file="/TP05/src/Utilidades/ES.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="393" y="471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -28,7 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="Utilidades.ValidarDatos" project="TP05" 
+  <class id="3" language="java" name="Utilidades.ValidarDatos" project="TP05" 
     file="/TP05/src/Utilidades/ValidarDatos.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="589" y="426"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -37,7 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="Controlador.CPrincipal" project="TP05" 
+  <class id="4" language="java" name="Controlador.CPrincipal" project="TP05" 
     file="/TP05/src/Controlador/CPrincipal.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="431" y="129"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -46,38 +37,51 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+  <class id="5" language="java" name="EstructuraDatos.Autor" project="TP05" file="/TP05/src/EstructuraDatos/Autor.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="157" y="471"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
   <association id="6">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="7" name="autor"/>      
-      <multiplicity id="8" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="9">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="10" name="autores"/>      
-      <multiplicity id="11" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="12">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="13">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="14" name="libros"/>      
-      <multiplicity id="15" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="7" name="libros">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="8" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="16">    
-    <end type="SOURCE" refId="5"/>    
+  <dependency id="9">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="10">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="11" name="autores"/>      
+      <multiplicity id="12" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="13">    
+    <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
+  <association id="14">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="15" name="autor"/>      
+      <multiplicity id="16" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
